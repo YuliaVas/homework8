@@ -33,22 +33,26 @@ namespace Парсер
 
         public static FileParser GetParser(string fileName)
         {
-            if (fileName.Contains(".xml"))
+            RtfParser rtf = new RtfParser(fileName);
+            XmlParser xml = new XmlParser(fileName);
+            HtmlParser html = new HtmlParser(fileName);
+
+            if (fileName.Contains(xml.ParserFormat))
             {
-                XmlParser xml = new XmlParser(fileName);
+                
                 xml.Parse();
                 return xml;
             }
 
-            if (fileName.Contains(".rtf"))
-            {  RtfParser rtf = new RtfParser(fileName);
+            if (fileName.Contains(rtf.ParserFormat))
+            {  
                 rtf.Parse();
                     return rtf;
             }
 
-            if (fileName.Contains(".html"))
+            if (fileName.Contains(html.ParserFormat))
             {
-                HtmlParser html = new HtmlParser(fileName);
+               
                 html.Parse();
                 return html;
             }
